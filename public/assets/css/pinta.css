@@ -98,9 +98,27 @@ body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:var(--graphite)
 .nav-left a,.nav-right a{color:var(--graphite);text-decoration:none;padding:8px 10px;border-radius:8px}
 .brand .logo{height:56px;display:block}
 
+/* Contact block in header */
+.contact{display:flex;align-items:center;gap:10px;margin-left:8px}
+.contact .phone{background:linear-gradient(90deg,var(--amber),var(--beer-fresh));color:#111;padding:8px 12px;border-radius:12px;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(183,115,20,0.12)}
+.contact .vk{display:inline-flex;align-items:center;justify-content:center;background:var(--bottle-green);color:#fff;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700}
+.contact .vk:hover{filter:brightness(.95)}
+
+
 @media(max-width:640px){
   .nav-left,.nav-right{display:none}
   .brand .logo{height:44px}
+}
+
+@media(max-width:980px){
+  /* show compact contact near logo on medium screens */
+  .nav-right{display:flex}
+  .contact .phone{padding:6px 8px;font-size:14px}
+}
+
+@media(max-width:640px){
+  /* hide contact on very small screens to save space */
+  .contact{display:none}
 }
 
 /* Taps slider */
