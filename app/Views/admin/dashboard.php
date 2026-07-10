@@ -152,32 +152,34 @@ $shorten = static function (string $text, int $limit = 120): string {
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="inline-actions">
+                                    <div class="inline-actions compact">
                                         <form class="toggle-form" action="/admin/taps/toggle" method="post">
                                             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
                                             <input type="hidden" name="id" value="<?= (int) $tap['id']; ?>">
                                             <input type="hidden" name="enabled" value="<?= ((int) $tap['is_on_tap']) === 1 ? '0' : '1'; ?>">
-                                            <button class="admin-btn ghost" type="submit">
+                                            <button class="admin-btn ghost icon-only" type="submit" title="Переключить">
                                                 <i class="fa-solid fa-toggle-<?= ((int) $tap['is_on_tap']) === 1 ? 'on' : 'off'; ?>"></i>
-                                                Переключить
                                             </button>
                                         </form>
 
+                                        <button class="admin-btn ghost icon-only" type="button" data-edit-target="tap-edit-<?= (int) $tap['id']; ?>" title="Редактировать">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+
                                         <button
-                                            class="admin-btn danger"
+                                            class="admin-btn danger icon-only"
                                             data-modal-target="delete-modal"
                                             data-modal-toggle="delete-modal"
                                             data-delete-form="tap-delete-<?= (int) $tap['id']; ?>"
                                             data-delete-title="Удалить сорт <?= htmlspecialchars((string) $tap['name'], ENT_QUOTES, 'UTF-8'); ?>?"
                                             type="button"
+                                            title="Удалить"
                                         >
                                             <i class="fa-solid fa-trash"></i>
-                                            Удалить
                                         </button>
                                     </div>
 
-                                    <details style="margin-top: 10px;">
-                                        <summary style="cursor: pointer;">Редактировать</summary>
+                                    <details id="tap-edit-<?= (int) $tap['id']; ?>" class="inline-edit" style="margin-top: 10px;">
                                         <form action="/admin/taps/update" method="post" enctype="multipart/form-data" class="admin-grid" style="margin-top: 10px;">
                                             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
                                             <input type="hidden" name="id" value="<?= (int) $tap['id']; ?>">
@@ -196,7 +198,9 @@ $shorten = static function (string $text, int $limit = 120): string {
                                                 <?php endforeach; ?>
                                             </select>
 
-                                            <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            <div>
+                                                <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            </div>
                                         </form>
                                     </details>
 
@@ -316,8 +320,25 @@ $shorten = static function (string $text, int $limit = 120): string {
                                 <td><?= htmlspecialchars((string) $event['announce'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?= htmlspecialchars((string) $event['event_at'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td>
-                                    <details>
-                                        <summary style="cursor: pointer;">Редактировать</summary>
+                                    <div class="inline-actions compact">
+                                        <button class="admin-btn ghost icon-only" type="button" data-edit-target="event-edit-<?= (int) $event['id']; ?>" title="Редактировать">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+
+                                        <button
+                                            class="admin-btn danger icon-only"
+                                            data-modal-target="delete-modal"
+                                            data-modal-toggle="delete-modal"
+                                            data-delete-form="event-delete-<?= (int) $event['id']; ?>"
+                                            data-delete-title="Удалить событие <?= htmlspecialchars((string) $event['title'], ENT_QUOTES, 'UTF-8'); ?>?"
+                                            type="button"
+                                            title="Удалить"
+                                        >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+
+                                    <details id="event-edit-<?= (int) $event['id']; ?>" class="inline-edit" style="margin-top: 10px;">
                                         <form action="/admin/events/update" method="post" enctype="multipart/form-data" class="admin-grid" style="margin-top: 10px;">
                                             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
                                             <input type="hidden" name="id" value="<?= (int) $event['id']; ?>">
@@ -335,22 +356,11 @@ $shorten = static function (string $text, int $limit = 120): string {
                                                 <?php endforeach; ?>
                                             </select>
 
-                                            <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            <div>
+                                                <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            </div>
                                         </form>
                                     </details>
-
-                                    <button
-                                        class="admin-btn danger"
-                                        data-modal-target="delete-modal"
-                                        data-modal-toggle="delete-modal"
-                                        data-delete-form="event-delete-<?= (int) $event['id']; ?>"
-                                        data-delete-title="Удалить событие <?= htmlspecialchars((string) $event['title'], ENT_QUOTES, 'UTF-8'); ?>?"
-                                        type="button"
-                                        style="margin-top: 8px;"
-                                    >
-                                        <i class="fa-solid fa-trash"></i>
-                                        Удалить
-                                    </button>
 
                                     <form id="event-delete-<?= (int) $event['id']; ?>" action="/admin/events/delete" method="post" style="display:none;">
                                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
@@ -457,8 +467,25 @@ $shorten = static function (string $text, int $limit = 120): string {
                                 <td><?= htmlspecialchars((string) $promotion['title'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?= htmlspecialchars((string) $promotion['announce'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td>
-                                    <details>
-                                        <summary style="cursor: pointer;">Редактировать</summary>
+                                    <div class="inline-actions compact">
+                                        <button class="admin-btn ghost icon-only" type="button" data-edit-target="promotion-edit-<?= (int) $promotion['id']; ?>" title="Редактировать">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+
+                                        <button
+                                            class="admin-btn danger icon-only"
+                                            data-modal-target="delete-modal"
+                                            data-modal-toggle="delete-modal"
+                                            data-delete-form="promotion-delete-<?= (int) $promotion['id']; ?>"
+                                            data-delete-title="Удалить акцию <?= htmlspecialchars((string) $promotion['title'], ENT_QUOTES, 'UTF-8'); ?>?"
+                                            type="button"
+                                            title="Удалить"
+                                        >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+
+                                    <details id="promotion-edit-<?= (int) $promotion['id']; ?>" class="inline-edit" style="margin-top: 10px;">
                                         <form action="/admin/promotions/update" method="post" enctype="multipart/form-data" class="admin-grid" style="margin-top: 10px;">
                                             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
                                             <input type="hidden" name="id" value="<?= (int) $promotion['id']; ?>">
@@ -474,22 +501,11 @@ $shorten = static function (string $text, int $limit = 120): string {
                                                     <option value="<?= htmlspecialchars((string) $asset['relative_path'], ENT_QUOTES, 'UTF-8'); ?>"><?= htmlspecialchars((string) $asset['original_name'], ENT_QUOTES, 'UTF-8'); ?></option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            <div>
+                                                <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            </div>
                                         </form>
                                     </details>
-
-                                    <button
-                                        class="admin-btn danger"
-                                        data-modal-target="delete-modal"
-                                        data-modal-toggle="delete-modal"
-                                        data-delete-form="promotion-delete-<?= (int) $promotion['id']; ?>"
-                                        data-delete-title="Удалить акцию <?= htmlspecialchars((string) $promotion['title'], ENT_QUOTES, 'UTF-8'); ?>?"
-                                        type="button"
-                                        style="margin-top: 8px;"
-                                    >
-                                        <i class="fa-solid fa-trash"></i>
-                                        Удалить
-                                    </button>
 
                                     <form id="promotion-delete-<?= (int) $promotion['id']; ?>" action="/admin/promotions/delete" method="post" style="display:none;">
                                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
@@ -591,8 +607,25 @@ $shorten = static function (string $text, int $limit = 120): string {
                                 <td><?= htmlspecialchars((string) $item['title'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?= htmlspecialchars($shorten((string) $item['content']), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td>
-                                    <details>
-                                        <summary style="cursor: pointer;">Редактировать</summary>
+                                    <div class="inline-actions compact">
+                                        <button class="admin-btn ghost icon-only" type="button" data-edit-target="news-edit-<?= (int) $item['id']; ?>" title="Редактировать">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+
+                                        <button
+                                            class="admin-btn danger icon-only"
+                                            data-modal-target="delete-modal"
+                                            data-modal-toggle="delete-modal"
+                                            data-delete-form="news-delete-<?= (int) $item['id']; ?>"
+                                            data-delete-title="Удалить новость <?= htmlspecialchars((string) $item['title'], ENT_QUOTES, 'UTF-8'); ?>?"
+                                            type="button"
+                                            title="Удалить"
+                                        >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+
+                                    <details id="news-edit-<?= (int) $item['id']; ?>" class="inline-edit" style="margin-top: 10px;">
                                         <form action="/admin/news/update" method="post" enctype="multipart/form-data" class="admin-grid" style="margin-top: 10px;">
                                             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
                                             <input type="hidden" name="id" value="<?= (int) $item['id']; ?>">
@@ -608,22 +641,11 @@ $shorten = static function (string $text, int $limit = 120): string {
                                                 <?php endforeach; ?>
                                             </select>
 
-                                            <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            <div>
+                                                <button class="admin-btn ghost" type="submit">Сохранить</button>
+                                            </div>
                                         </form>
                                     </details>
-
-                                    <button
-                                        class="admin-btn danger"
-                                        data-modal-target="delete-modal"
-                                        data-modal-toggle="delete-modal"
-                                        data-delete-form="news-delete-<?= (int) $item['id']; ?>"
-                                        data-delete-title="Удалить новость <?= htmlspecialchars((string) $item['title'], ENT_QUOTES, 'UTF-8'); ?>?"
-                                        type="button"
-                                        style="margin-top: 8px;"
-                                    >
-                                        <i class="fa-solid fa-trash"></i>
-                                        Удалить
-                                    </button>
 
                                     <form id="news-delete-<?= (int) $item['id']; ?>" action="/admin/news/delete" method="post" style="display:none;">
                                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">

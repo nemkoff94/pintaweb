@@ -53,4 +53,18 @@
             },
         });
     }
+
+    // Open inline edit forms when clicking edit icon buttons
+    document.querySelectorAll('[data-edit-target]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-edit-target');
+            if (!targetId) return;
+
+            const det = document.getElementById(targetId);
+            if (!det) return;
+
+            det.open = true;
+            det.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    });
 })();

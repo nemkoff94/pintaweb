@@ -348,6 +348,36 @@ body.admin-shell {
     gap: 8px;
 }
 
+/* Compact inline actions: icon-only buttons in one row */
+.inline-actions.compact {
+    gap: 6px;
+}
+.inline-actions.compact .admin-btn {
+    padding: 8px;
+    border-radius: 8px;
+    gap: 0;
+    width: 36px;
+    height: 36px;
+}
+.inline-actions.compact .admin-btn .fa-solid {
+    font-size: 14px;
+}
+.inline-actions.compact .admin-btn.ghost {
+    background: transparent;
+    border-color: transparent;
+}
+.admin-btn.icon-only {
+    padding: 6px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+}
+
+/* hide default summary label when using inline edit forms */
+details.inline-edit > summary {
+    display: none;
+}
+
 .toggle-form {
     display: inline-flex;
 }
