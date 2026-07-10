@@ -1,8 +1,20 @@
-# Route all requests to the /public directory so repository root can be used as web root
-DirectoryIndex public/index.php
+# Shared-hosting friendly entrypoint.
+# Keep repository root as document root and route requests into /public.
+DirectoryIndex index.php
+Options -Indexes
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  # Avoid rewriting requests that already target /public/
-  RewriteCond %{REQUEST_URI} !^/public/
+
+  # Block direct web access to internal application folders.
+  RewriteRule ^(app|config|database|routes|storage)(/|$) - [F,L]
+
+  # Do not rewrite requests already targeting /public.
+  RewriteCond %{REQUEST_URI} ^/public/ [NC]
+  RewriteRule ^ - [L]
+
+  # Route non-existing paths to /public.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
