@@ -158,6 +158,7 @@ final class AdminController
 
     public function createEvent(Request $request): void
     {
+        $this->logRequest('createEvent');
         if (! $this->validateCsrf($request, 'events')) {
             return;
         }
@@ -251,6 +252,7 @@ final class AdminController
 
     public function createPromotion(Request $request): void
     {
+        $this->logRequest('createPromotion');
         if (! $this->validateCsrf($request, 'promotions')) {
             return;
         }
@@ -340,6 +342,7 @@ final class AdminController
 
     public function createNews(Request $request): void
     {
+        $this->logRequest('createNews');
         if (! $this->validateCsrf($request, 'news')) {
             return;
         }
@@ -366,6 +369,22 @@ final class AdminController
 
         Session::flash('success', 'Новость добавлена.');
         Response::redirect('/admin/dashboard?section=news');
+    }
+
+    private function logRequest(string $label): void
+    {
+        $logDir = dirname(__DIR__, 2) . '/storage/logs';
+
+        if (! is_dir($logDir)) {
+            @mkdir($logDir, 0777, true);
+        }
+
+        $file = $logDir . '/admin-debug.log';
+        $entry = sprintf("[%s] %s\nPOST: %s\nFILES: %s\n\n", date(DATE_ATOM), $label, json_encode($_POST, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), json_encode(array_map(function ($f) {
+            return is_array($f) ? array_replace($f, ['tmp_name' => isset($f['tmp_name']) ? basename($f['tmp_name']) : null]) : $f;
+        }, $_FILES), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+
+        @file_put_contents($file, $entry, FILE_APPEND | LOCK_EX);
     }
 
     public function updateNews(Request $request): void

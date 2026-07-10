@@ -346,7 +346,7 @@ $shorten = static function (string $text, int $limit = 120): string {
 
                                             <input class="admin-input" type="text" name="title" value="<?= htmlspecialchars((string) $event['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
                                             <textarea class="admin-textarea" name="announce" required><?= htmlspecialchars((string) $event['announce'], ENT_QUOTES, 'UTF-8'); ?></textarea>
-                                            <textarea class="admin-textarea js-richtext" name="description" required><?= htmlspecialchars((string) $event['description'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+                                            <textarea class="admin-textarea js-richtext" name="description"><?= htmlspecialchars((string) $event['description'], ENT_QUOTES, 'UTF-8'); ?></textarea>
                                             <input class="admin-input" type="text" name="event_at" value="<?= htmlspecialchars((string) $event['event_at'], ENT_QUOTES, 'UTF-8'); ?>" required>
                                             <input class="admin-input" type="file" name="event_cover" accept="image/*">
                                             <select class="admin-select" name="existing_image">
@@ -400,7 +400,7 @@ $shorten = static function (string $text, int $limit = 120): string {
 
                         <label class="admin-field">
                             <span class="admin-label">Описание</span>
-                            <textarea class="admin-textarea js-richtext admin-editor" name="description" required></textarea>
+                            <textarea class="admin-textarea js-richtext admin-editor" name="description"></textarea>
                         </label>
 
                         <div class="admin-grid two">
@@ -493,7 +493,7 @@ $shorten = static function (string $text, int $limit = 120): string {
 
                                             <input class="admin-input" type="text" name="title" value="<?= htmlspecialchars((string) $promotion['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
                                             <textarea class="admin-textarea" name="announce" required><?= htmlspecialchars((string) $promotion['announce'], ENT_QUOTES, 'UTF-8'); ?></textarea>
-                                            <textarea class="admin-textarea js-richtext" name="description" required><?= htmlspecialchars((string) $promotion['description'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+                                            <textarea class="admin-textarea js-richtext" name="description"><?= htmlspecialchars((string) $promotion['description'], ENT_QUOTES, 'UTF-8'); ?></textarea>
                                             <input class="admin-input" type="file" name="promotion_cover" accept="image/*">
                                             <select class="admin-select" name="existing_image">
                                                 <option value="">Оставить текущую</option>
@@ -545,7 +545,7 @@ $shorten = static function (string $text, int $limit = 120): string {
 
                         <label class="admin-field">
                             <span class="admin-label">Описание</span>
-                            <textarea class="admin-textarea js-richtext" name="description" required></textarea>
+                            <textarea class="admin-textarea js-richtext" name="description"></textarea>
                         </label>
 
                         <div class="admin-grid two">
@@ -632,7 +632,7 @@ $shorten = static function (string $text, int $limit = 120): string {
                                             <input type="hidden" name="current_image" value="<?= htmlspecialchars((string) ($item['cover_image_path'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>">
 
                                             <input class="admin-input" type="text" name="title" value="<?= htmlspecialchars((string) $item['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
-                                            <textarea class="admin-textarea js-richtext" name="content" required><?= htmlspecialchars((string) $item['content'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+                                            <textarea class="admin-textarea js-richtext" name="content"><?= htmlspecialchars((string) $item['content'], ENT_QUOTES, 'UTF-8'); ?></textarea>
                                             <input class="admin-input" type="file" name="news_cover" accept="image/*">
                                             <select class="admin-select" name="existing_image">
                                                 <option value="">Оставить текущую</option>
@@ -680,7 +680,7 @@ $shorten = static function (string $text, int $limit = 120): string {
 
                         <label class="admin-field">
                             <span class="admin-label">Текст новости</span>
-                            <textarea class="admin-textarea js-richtext" name="content" required></textarea>
+                            <textarea class="admin-textarea js-richtext" name="content"></textarea>
                         </label>
 
                         <div class="admin-grid two">
