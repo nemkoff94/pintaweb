@@ -49,6 +49,69 @@ final class Database
             )'
         );
 
+        $pdo->exec(
+            'CREATE TABLE IF NOT EXISTS media_assets (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                file_name TEXT NOT NULL,
+                original_name TEXT NOT NULL,
+                relative_path TEXT NOT NULL UNIQUE,
+                mime_type TEXT NOT NULL,
+                size_bytes INTEGER NOT NULL,
+                created_at TEXT NOT NULL
+            )'
+        );
+
+        $pdo->exec(
+            'CREATE TABLE IF NOT EXISTS taps (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                style TEXT NOT NULL,
+                abv REAL NOT NULL,
+                price_store_liter REAL NOT NULL,
+                price_bar_half REAL NOT NULL,
+                image_path TEXT,
+                is_on_tap INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            )'
+        );
+
+        $pdo->exec(
+            'CREATE TABLE IF NOT EXISTS events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                announce TEXT NOT NULL,
+                description TEXT NOT NULL,
+                cover_image_path TEXT,
+                event_at TEXT NOT NULL,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            )'
+        );
+
+        $pdo->exec(
+            'CREATE TABLE IF NOT EXISTS promotions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                announce TEXT NOT NULL,
+                description TEXT NOT NULL,
+                cover_image_path TEXT,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            )'
+        );
+
+        $pdo->exec(
+            'CREATE TABLE IF NOT EXISTS news (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                content TEXT NOT NULL,
+                cover_image_path TEXT,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            )'
+        );
+
         $statement = $pdo->prepare('SELECT COUNT(*) FROM users WHERE login = :login');
         $statement->execute([
             ':login' => 'admin',

@@ -17,9 +17,22 @@ final class View
             exit;
         }
 
+        $layoutName = 'layout';
+
+        if (isset($data['layout']) && is_string($data['layout']) && $data['layout'] !== '') {
+            $layoutName = $data['layout'];
+            unset($data['layout']);
+        }
+
         extract($data, EXTR_SKIP);
 
-        $layout = $viewsPath . 'layout.php';
+        $layout = $viewsPath . str_replace('.', '/', $layoutName) . '.php';
+
+        if (! file_exists($layout)) {
+            http_response_code(500);
+            echo 'Layout not found.';
+            exit;
+        }
 
         require $layout;
     }

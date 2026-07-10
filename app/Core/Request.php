@@ -58,4 +58,11 @@ final class Request
 
         return is_string($value) ? $value : $default;
     }
+
+    public function file(string $key): ?array
+    {
+        $file = $_FILES[$key] ?? null;
+
+        return is_array($file) ? $file : null;
+    }
 }
