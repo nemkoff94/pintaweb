@@ -19,10 +19,16 @@ body {
 }
 
 .retro-hero {
-    background: linear-gradient(180deg, #ffe9d6 0%, #f5efe6 40%, #efe8df 100%);
-    border-top: 6px solid #b12318;
-    border-bottom: 6px solid #b12318;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/images/pinta/hero_pinta.webp');
+    background-size: cover;
+    background-position: center;
+    border-top: 6px solid rgba(0,0,0,0.08);
+    border-bottom: 6px solid rgba(0,0,0,0.08);
+    color: #fff;
 }
+
+.retro-hero .retro-title { color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+.retro-hero .retro-lead { color: rgba(255,255,255,0.92); text-shadow: 0 1px 4px rgba(0,0,0,0.45); }
 
 .retro-title {
     font-family: 'Oswald', 'Arial Narrow', sans-serif;
