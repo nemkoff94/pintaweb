@@ -22,6 +22,7 @@ final class HomeController
         View::render('home.index', [
             'config' => $this->config,
             'title' => 'Главная',
+            'bodyClass' => 'home-page',
             'taps' => $repository->listTaps(),
             'events' => $repository->listEvents(),
             'promotions' => $repository->listPromotions(),

@@ -12,8 +12,9 @@ declare(strict_types=1);
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/pinta.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
 </head>
-<body class="min-h-screen bg-stone-950 text-stone-100 antialiased">
+<body class="min-h-screen bg-stone-950 text-stone-100 antialiased <?= htmlspecialchars($bodyClass ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 <?php require dirname(__DIR__) . '/Views/partials/header.php'; ?>
 <main>
     <?php require $contentView; ?>

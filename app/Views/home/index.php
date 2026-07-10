@@ -1,140 +1,277 @@
 <?php
 
 declare(strict_types=1);
+
+$resolveImage = static function (?string $path, string $fallback): string {
+    $path = trim((string) $path);
+
+    return $path !== '' ? $path : $fallback;
+};
+
+$formatPrice = static function ($value): string {
+    if ($value === null || $value === '' || (float) $value <= 0) {
+        return 'По запросу';
+    }
+
+    return number_format((float) $value, 0, ',', ' ') . ' ₽';
+};
+
+$formatPercent = static function ($value): string {
+    if ($value === null || $value === '') {
+        return '—';
+    }
+
+    $formatted = number_format((float) $value, 1, ',', ' ');
+    $formatted = rtrim(rtrim($formatted, '0'), ',');
+
+    return $formatted . '%';
+};
+
+$formatDate = static function (?string $value): string {
+    $value = trim((string) $value);
+
+    if ($value === '') {
+        return '';
+    }
+
+    $timestamp = strtotime($value);
+
+    return $timestamp ? date('d.m.Y', $timestamp) : $value;
+};
+
+$onTaps = [];
+foreach (($taps ?? []) as $tap) {
+    if ((int) ($tap['is_on_tap'] ?? 0) === 1) {
+        $onTaps[] = $tap;
+    }
+}
+
+$featuredPromotions = array_slice($promotions ?? [], 0, 3);
+$featuredEvents = array_slice($events ?? [], 0, 3);
+$featuredNews = array_slice($news ?? [], 0, 3);
 ?>
-<section>
-    <!-- HERO: 50% viewport height, dark overlay -->
-    <section class="hero" style="min-height:50vh;background-image:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('/assets/images/pinta/hero_pinta.webp');">
-        <div class="container hero-grid" style="align-items:end;">
-            <div style="grid-column:1/-1;text-align:center;padding:36px 12px;">
-                <h1 class="hero-title" style="font-size:26px;">Добро пожаловать в Пинту: место, где хорошие люди встречаются с хорошим пивом!</h1>
-                <div style="margin-top:16px;"><a href="#book" class="btn btn--primary">Забронировать</a></div>
+<section class="home-page-shell">
+    <section class="home-hero">
+        <div class="container home-hero__grid">
+            <div class="home-hero__copy">
+                <div class="home-hero__eyebrow">Паб, ресторан и пространство для вечеров с характером</div>
+                <h1 class="home-hero__title">Пинта — место, где вкус, сервис и атмосфера собраны как в лучших отелях и ресторанах.</h1>
+                <p class="home-hero__lead">Сдержанная эстетика, внимательный сервис, свежие напитки на кранах и комфортная посадка для встреч, ужинов и спокойных длинных вечеров.</p>
+
+                <div class="home-hero__actions">
+                    <a href="#contacts" class="btn btn--primary">Забронировать стол</a>
+                    <a href="#taps" class="btn btn--ghost">Посмотреть краны</a>
+                </div>
+
+                <div class="home-hero__stats" aria-label="Ключевые факты">
+                    <div class="stat-tile">
+                        <strong>2 зала</strong>
+                        <span>для разного настроения</span>
+                    </div>
+                    <div class="stat-tile">
+                        <strong>Ежедневно</strong>
+                        <span>с 10:00 до 22:00</span>
+                    </div>
+                    <div class="stat-tile">
+                        <strong>18+</strong>
+                        <span>взрослая атмосфера и комфорт</span>
+                    </div>
+                </div>
             </div>
+
+            <aside class="home-hero__panel">
+                <div class="home-hero__panel-kicker">Сейчас открыто</div>
+                <div class="home-hero__panel-title">Ежедневно с 10:00 до 22:00</div>
+                <p class="home-hero__panel-text">Бронируйте стол заранее, заказывайте напитки на вынос и приходите на спокойный вечер без спешки.</p>
+
+                <ul class="home-hero__panel-list">
+                    <li><span>Телефон</span><a href="tel:+79533392119">+7 953 339 2119</a></li>
+                    <li><span>Адрес</span><strong>Малоярославец, ул. Московская, 14</strong></li>
+                    <li><span>VK</span><a href="https://vk.com/pinta_mal">vk.com/pinta_mal</a></li>
+                </ul>
+            </aside>
         </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section" id="about">
-        <div class="container" style="display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;">
-            <div>
-                <h2 class="section-title">О нас</h2>
-                <p class="muted">В первом зале - магазин разливных напитков с большим выбором на кранах. Во втором зале - уютный ретро-паб в стиле советской квартиры, где можно пообщаться с друзьями за кружечкой пива. Заботимся о свежести и качестве пива. Создаем дружелюбную атмосферу.</p>
-            </div>
-            <div>
-                <img src="/assets/images/pinta/bar_vert.webp" alt="Бар" style="width:100%;height:auto;border-radius:12px;" />
-            </div>
-        </div>
-    </section>
-
-    <!-- TAPS -->
-    <section class="section" id="taps">
+    <section class="home-section">
         <div class="container">
-            <h2 class="section-title">Сегодня на кранах:</h2>
-            <div class="slider-wrap" style="position:relative;margin-top:12px;">
-                <button class="slider-btn prev" aria-label="Назад" style="position:absolute;left:-10px;top:50%;transform:translateY(-50%);z-index:5;">◀</button>
+            <div class="section-intro section-intro--wide">
+                <span class="section-kicker">Атмосфера</span>
+                <h2>Визуально спокойное, но живое место для встреч, ужинов и длинных разговоров.</h2>
+                <p>Мы собрали пространство так, чтобы оно ощущалось дорогим без показной роскоши: мягкий свет, тёплые фактуры, структурированные секции и понятная навигация по сценарию вечера.</p>
+            </div>
+
+            <div class="experience-grid">
+                <article class="experience-card">
+                    <div class="experience-card__title">Сервис</div>
+                    <p>Быстрая подача, аккуратная посадка, понятные рекомендации и внимание к деталям — как в хорошем ресторане.</p>
+                </article>
+                <article class="experience-card">
+                    <div class="experience-card__title">Напитки</div>
+                    <p>Большой выбор на кранах, свежая ротация позиций и понятная витрина с сортами, стилем и крепостью.</p>
+                </article>
+                <article class="experience-card">
+                    <div class="experience-card__title">Атмосфера</div>
+                    <p>Баланс камерности и статуса: место, куда удобно прийти вдвоём, с друзьями или для спокойного ужина.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-section home-story">
+        <div class="container home-story__grid">
+            <div class="home-story__media">
+                <img src="/assets/images/pinta/bar_vert.webp" alt="Интерьер Пинты" />
+            </div>
+            <div class="home-story__content">
+                <span class="section-kicker">О нас</span>
+                <h2>Ресторанная подача, дружелюбный паб и аккуратная визуальная дисциплина.</h2>
+                <p>В первом зале работает магазин разливных напитков с большим выбором на кранах. Во втором — уютный ретро-паб с более камерным настроением. Мы держим фокус на свежести, качестве и ощущении «хорошо проведённого вечера».</p>
+
+                <div class="home-story__points">
+                    <div class="home-story__point">Свежие напитки и понятная витрина</div>
+                    <div class="home-story__point">Уютная посадка и мягкий свет</div>
+                    <div class="home-story__point">Вечерний формат без суеты</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-section" id="taps">
+        <div class="container">
+            <div class="section-intro">
+                <span class="section-kicker">Сегодня на кранах</span>
+                <h2>Подборка актуальных сортов с чистой визуальной подачей.</h2>
+                <p>Карточки показывают ключевые параметры сразу: стиль, крепость и ориентир по цене. Это быстрее для гостя и выглядит как полноценное меню уровня хорошего заведения.</p>
+            </div>
+
+            <div class="slider-wrap home-slider-wrap">
+                <button class="slider-btn prev" aria-label="Назад">‹</button>
                 <div class="slider horizontal-scroll taps-slider" data-visible-desktop="4">
-                    <?php
-                    $onTaps = [];
-                    foreach (($taps ?? []) as $tap) {
-                        if ((int) ($tap['is_on_tap'] ?? 0) === 1) {
-                            $onTaps[] = $tap;
-                        }
-                    }
-
-                    if (count($onTaps) === 0): ?>
-                        <div class="card">Скоро появятся сорта на кранах — следите за обновлениями.</div>
-                    <?php else:
-                        foreach ($onTaps as $tap): ?>
-                            <article class="slider-item card">
-                                <div style="height:160px;overflow:hidden;border-radius:10px;margin-bottom:8px;">
-                                    <img src="<?= htmlspecialchars($tap['image_path'] ?: '/assets/images/pinta/hero-placeholder.svg', ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($tap['name'], ENT_QUOTES, 'UTF-8') ?>" style="width:100%;height:100%;object-fit:cover;" />
+                    <?php if (count($onTaps) === 0): ?>
+                        <div class="tap-card tap-card--empty">Скоро здесь появятся сорта на кранах. Мы обновим витрину, как только добавим новые позиции.</div>
+                    <?php else: ?>
+                        <?php foreach ($onTaps as $tap): ?>
+                            <article class="tap-card slider-item">
+                                <div class="tap-card__media">
+                                    <img src="<?= htmlspecialchars($resolveImage($tap['image_path'] ?? '', '/assets/images/pinta/hero-placeholder.svg'), ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars((string) ($tap['name'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
+                                    <span class="tap-card__badge">На кране</span>
                                 </div>
-                                <h4 style="margin:6px 0;font-size:18px;"><?= htmlspecialchars($tap['name'], ENT_QUOTES, 'UTF-8') ?></h4>
-                                <div class="muted"><?= htmlspecialchars($tap['style'] ?? '', ENT_QUOTES, 'UTF-8') ?> · <?= htmlspecialchars((string) ($tap['abv'] ?? ''), ENT_QUOTES, 'UTF-8') ?>%</div>
+                                <div class="tap-card__body">
+                                    <div class="tap-card__meta">
+                                        <span><?= htmlspecialchars((string) ($tap['style'] ?? 'Стиль не указан'), ENT_QUOTES, 'UTF-8') ?></span>
+                                        <span><?= htmlspecialchars($formatPercent($tap['abv'] ?? null), ENT_QUOTES, 'UTF-8') ?></span>
+                                    </div>
+                                    <h3><?= htmlspecialchars((string) ($tap['name'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3>
+                                    <div class="tap-card__prices">
+                                        <div>
+                                            <span>Магазин, л</span>
+                                            <strong><?= htmlspecialchars($formatPrice($tap['price_store_liter'] ?? null), ENT_QUOTES, 'UTF-8') ?></strong>
+                                        </div>
+                                        <div>
+                                            <span>Бар, 0.5 л</span>
+                                            <strong><?= htmlspecialchars($formatPrice($tap['price_bar_half'] ?? null), ENT_QUOTES, 'UTF-8') ?></strong>
+                                        </div>
+                                    </div>
+                                </div>
                             </article>
-                        <?php endforeach;
-                    endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
-                <button class="slider-btn next" aria-label="Вперёд" style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);z-index:5;">▶</button>
+                <button class="slider-btn next" aria-label="Вперёд">›</button>
             </div>
         </div>
     </section>
 
-    <!-- PROMOTIONS -->
-    <section class="section" id="promotions">
+    <section class="home-section home-editorial">
         <div class="container">
-            <h2 class="section-title">Акции</h2>
-            <div class="cards mt-4">
-                <?php if (empty($promotions ?? [])): ?>
-                    <div class="card">Здесь скоро появятся актуальные акции — ждите новостей!</div>
-                <?php else:
-                    foreach ($promotions as $promo): ?>
-                        <article class="card">
-                            <h3><?= htmlspecialchars($promo['title'], ENT_QUOTES, 'UTF-8') ?></h3>
-                            <p class="muted"><?= htmlspecialchars($promo['announce'] ?? '', ENT_QUOTES, 'UTF-8') ?></p>
-                        </article>
-                    <?php endforeach;
-                endif; ?>
+            <div class="section-intro">
+                <span class="section-kicker">Программа вечера</span>
+                <h2>Акции, события и новости поданы как аккуратная подборка, а не как хаотичный список.</h2>
+            </div>
+
+            <div class="editorial-grid">
+                <article class="content-card">
+                    <div class="content-card__head">
+                        <span class="content-card__label">Акции</span>
+                    </div>
+                    <?php if (empty($featuredPromotions)): ?>
+                        <p class="content-card__empty">Скоро появятся специальные предложения на вечерние часы и подборки к напиткам.</p>
+                    <?php else: ?>
+                        <?php foreach ($featuredPromotions as $promo): ?>
+                            <div class="content-item">
+                                <h3><?= htmlspecialchars((string) ($promo['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3>
+                                <p><?= htmlspecialchars((string) ($promo['announce'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </article>
+
+                <article class="content-card">
+                    <div class="content-card__head">
+                        <span class="content-card__label">События</span>
+                    </div>
+                    <?php if (empty($featuredEvents)): ?>
+                        <p class="content-card__empty">Событий пока нет, но этот блок готов под дегустации, музыкальные вечера и камерные встречи.</p>
+                    <?php else: ?>
+                        <?php foreach ($featuredEvents as $ev): ?>
+                            <div class="content-item">
+                                <div class="content-item__meta"><?= htmlspecialchars($formatDate($ev['event_at'] ?? null), ENT_QUOTES, 'UTF-8') ?></div>
+                                <h3><?= htmlspecialchars((string) ($ev['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3>
+                                <p><?= htmlspecialchars((string) ($ev['announce'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </article>
+
+                <article class="content-card">
+                    <div class="content-card__head">
+                        <span class="content-card__label">Новости</span>
+                    </div>
+                    <?php if (empty($featuredNews)): ?>
+                        <p class="content-card__empty">Здесь будут обновления меню, режима работы и сезонных новинок.</p>
+                    <?php else: ?>
+                        <?php foreach ($featuredNews as $item): ?>
+                            <div class="content-item">
+                                <h3><?= htmlspecialchars((string) ($item['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3>
+                                <p><?= htmlspecialchars((string) ($item['content'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- EVENTS -->
-    <section class="section" id="events">
-        <div class="container">
-            <h2 class="section-title">События</h2>
-            <div class="cards mt-4">
-                <?php if (empty($events ?? [])): ?>
-                    <div class="card">Событий пока нет — но скоро всё изменится!</div>
-                <?php else:
-                    foreach ($events as $ev): ?>
-                        <article class="card">
-                            <h3><?= htmlspecialchars($ev['title'], ENT_QUOTES, 'UTF-8') ?></h3>
-                            <p class="muted"><?= htmlspecialchars($ev['announce'] ?? '', ENT_QUOTES, 'UTF-8') ?></p>
-                            <div class="text-sm muted">Дата: <?= htmlspecialchars($ev['event_at'] ?? '', ENT_QUOTES, 'UTF-8') ?></div>
-                        </article>
-                    <?php endforeach;
-                endif; ?>
-            </div>
-        </div>
-    </section>
+    <section class="home-section" id="contacts">
+        <div class="container contact-grid">
+            <div class="section-intro contact-intro">
+                <span class="section-kicker">Контакты</span>
+                <h2>Резерв столов, адрес и карта — в одном спокойном блоке.</h2>
+                <p>Мы сделали этот блок максимально прямым: быстрый звонок, точный адрес, график работы и карта без лишних отвлекающих элементов.</p>
 
-    <!-- NEWS -->
-    <section class="section" id="news">
-        <div class="container">
-            <h2 class="section-title">Новости</h2>
-            <div class="cards mt-4">
-                <?php if (empty($news ?? [])): ?>
-                    <div class="card">Новости будут здесь — следите за обновлениями.</div>
-                <?php else:
-                    foreach ($news as $n): ?>
-                        <article class="card">
-                            <h3><?= htmlspecialchars($n['title'], ENT_QUOTES, 'UTF-8') ?></h3>
-                            <p class="muted"><?= htmlspecialchars($n['content'] ?? '', ENT_QUOTES, 'UTF-8') ?></p>
-                        </article>
-                    <?php endforeach;
-                endif; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACTS -->
-    <section class="section" id="contacts">
-        <div class="container" style="display:grid;grid-template-columns:1fr 560px;gap:24px;align-items:start;">
-            <div>
-                <h2 class="section-title">Контакты</h2>
-                <p class="muted">Телефон для бронирования и предзаказа: <a href="tel:+79533392119">+7 953 339 2119</a></p>
-                <p class="muted">Адрес: Малоярославец, ул. Московская, дом 14.</p>
-                <p class="muted">График работы: Ежедневно с 10:00 до 22:00. Работаем до последнего гостя. По предварительной договоренности работаем после 22:00.</p>
-                <p class="muted">Мы в VK: <a href="https://vk.com/pinta_mal">https://vk.com/pinta_mal</a></p>
-            </div>
-            <div>
-                <div style="position:relative;overflow:hidden;">
-                    <a href="https://yandex.ru/maps/org/pinta/76021133852/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Пинта</a>
-                    <a href="https://yandex.ru/maps/10697/maloyaroslavets/category/beer_shop/40891073018/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Магазин пива в Малоярославце</a>
-                    <a href="https://yandex.ru/maps/10697/maloyaroslavets/category/pub/167978289740/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Паб в Малоярославце</a>
-                    <iframe src="https://yandex.ru/map-widget/v1/org/pinta/76021133852/?ll=36.471430%2C55.010597&z=17" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;border-radius:10px;"></iframe>
+                <div class="contact-list">
+                    <div class="contact-row">
+                        <span>Телефон</span>
+                        <a href="tel:+79533392119">+7 953 339 2119</a>
+                    </div>
+                    <div class="contact-row">
+                        <span>Адрес</span>
+                        <strong>Малоярославец, ул. Московская, дом 14</strong>
+                    </div>
+                    <div class="contact-row">
+                        <span>График</span>
+                        <strong>Ежедневно с 10:00 до 22:00</strong>
+                    </div>
+                    <div class="contact-row">
+                        <span>VK</span>
+                        <a href="https://vk.com/pinta_mal">https://vk.com/pinta_mal</a>
+                    </div>
                 </div>
+            </div>
+
+            <div class="map-shell">
+                <iframe src="https://yandex.ru/map-widget/v1/org/pinta/76021133852/?ll=36.471430%2C55.010597&z=17" title="Пинта на карте" width="560" height="400" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
