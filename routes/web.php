@@ -16,6 +16,8 @@ return static function (\App\Core\Router $router): void {
     $router->post('/admin/logout', [AuthController::class, 'logout']);
     $router->get('/admin/dashboard', [AdminController::class, 'dashboard'], [AuthMiddleware::class]);
 
+    $router->get('/privacy', [\App\Controllers\HomeController::class, 'privacy']);
+
     $router->post('/admin/taps/create', [AdminController::class, 'createTap'], [AuthMiddleware::class]);
     $router->post('/admin/taps/update', [AdminController::class, 'updateTap'], [AuthMiddleware::class]);
     $router->post('/admin/taps/toggle', [AdminController::class, 'toggleTap'], [AuthMiddleware::class]);

@@ -6,6 +6,8 @@ namespace App\Controllers;
 
 use App\Core\Request;
 use App\Core\View;
+use App\Core\Database;
+use App\Models\AdminContent;
 
 final class HomeController
 {
@@ -15,20 +17,23 @@ final class HomeController
 
     public function index(Request $request): void
     {
-        // If a static landing exists, serve it as the homepage
-        $base = dirname(__DIR__, 2);
-        $static = $base . '/public/pinta-static/index.html';
-
-        if (is_file($static)) {
-            // Serve the static file and stop further processing
-            header('Content-Type: text/html; charset=utf-8');
-            echo file_get_contents($static);
-            return;
-        }
+        $repository = new AdminContent(Database::connection($this->config));
 
         View::render('home.index', [
             'config' => $this->config,
             'title' => 'Главная',
+            'taps' => $repository->listTaps(),
+            'events' => $repository->listEvents(),
+            'promotions' => $repository->listPromotions(),
+            'news' => $repository->listNews(),
+        ]);
+    }
+
+    public function privacy(Request $request): void
+    {
+        View::render('home.privacy', [
+            'config' => $this->config,
+            'title' => 'Политика конфиденциальности',
         ]);
     }
 }
