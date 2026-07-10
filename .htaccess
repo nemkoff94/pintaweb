@@ -1,0 +1,8 @@
+# Route all requests to the /public directory so repository root can be used as web root
+DirectoryIndex public/index.php
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Avoid rewriting requests that already target /public/
+  RewriteCond %{REQUEST_URI} !^/public/
+  RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
