@@ -32,7 +32,7 @@ body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:var(--graphite)
 /* Hero */
 .hero{min-height:88vh;background-size:cover;background-position:center;display:flex;align-items:center;background-image:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('../images/pinta/hero_pinta.webp');color:#fff}
 .hero-grid{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:center}
-.hero-title{font-family:'Space Grotesk',Inter;font-size:46px;line-height:1.02;margin:0 0 12px;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6)}
+.hero-title{font-family:'Space Grotesk',Inter;font-size:36px;line-height:1.02;margin:0 0 12px;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6)}
 .hero-sub{color:rgba(255,255,255,0.92);max-width:64ch;text-shadow:0 1px 4px rgba(0,0,0,0.45)}
 .hero-cta{margin-top:18px}
 .hero-right{justify-self:end}
