@@ -42,10 +42,11 @@ declare(strict_types=1);
         <!-- Наш интерьер -->
         <section class="mt-14">
             <h2 class="retro-section-title">Наш интерьер</h2>
-            <div class="mt-6 grid grid-cols-3 gap-4">
-                <img src="/assets/images/pinta/gallery-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-48 object-cover rounded-lg placeholder-img" />
-                <img src="/assets/images/pinta/gallery-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-48 object-cover rounded-lg placeholder-img" />
-                <img src="/assets/images/pinta/gallery-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-48 object-cover rounded-lg placeholder-img" />
+            <div class="mt-6 grid grid-cols-4 gap-4">
+                <img src="/assets/images/pinta/pub.webp" alt="Интерьер — фото 1" class="w-full h-48 object-cover rounded-lg" />
+                <img src="/assets/images/pinta/pub2.webp" alt="Интерьер — фото 2" class="w-full h-48 object-cover rounded-lg" />
+                <img src="/assets/images/pinta/pub3.webp" alt="Интерьер — фото 3" class="w-full h-48 object-cover rounded-lg" />
+                <img src="/assets/images/pinta/pub4.webp" alt="Интерьер — фото 4" class="w-full h-48 object-cover rounded-lg" />
             </div>
             <p class="mt-4 text-sm text-stone-700">Каждый уголок Пинты напоминает теплые вечера дома, только с отличным пивом.</p>
         </section>
