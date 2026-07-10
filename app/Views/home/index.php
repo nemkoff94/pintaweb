@@ -54,27 +54,27 @@ $featuredNews = array_slice($news ?? [], 0, 3);
     <section class="home-hero">
         <div class="container home-hero__grid">
             <div class="home-hero__copy">
-                <div class="home-hero__eyebrow">Паб, ресторан и пространство для вечеров с характером</div>
-                <h1 class="home-hero__title">Пинта — место, где вкус, сервис и атмосфера собраны как в лучших отелях и ресторанах.</h1>
-                <p class="home-hero__lead">Сдержанная эстетика, внимательный сервис, свежие напитки на кранах и комфортная посадка для встреч, ужинов и спокойных длинных вечеров.</p>
+                <div class="home-hero__eyebrow">Пинта</div>
+                <h1 class="home-hero__title">Место, где хорошие люди встречаются с хорошим пивом</h1>
+                <p class="home-hero__lead">20+ сортов на розливе, широкий выбор пива в бутылках. Ретро-паб в стиле квартиры СССР</p>
 
                 <div class="home-hero__actions">
                     <a href="#contacts" class="btn btn--primary">Забронировать стол</a>
-                    <a href="#taps" class="btn btn--ghost">Посмотреть краны</a>
+                    <a href="#taps" class="btn btn--ghost">Что сегодня на кранах</a>
                 </div>
 
                 <div class="home-hero__stats" aria-label="Ключевые факты">
                     <div class="stat-tile">
-                        <strong>2 зала</strong>
-                        <span>для разного настроения</span>
+                        <strong>Магазин</strong>
+                        <span>где следят за качеством пива</span>
                     </div>
                     <div class="stat-tile">
-                        <strong>Ежедневно</strong>
-                        <span>с 10:00 до 22:00</span>
+                        <strong>Ретро-паб</strong>
+                        <span>с дружелюбной атмосферой</span>
                     </div>
                     <div class="stat-tile">
-                        <strong>18+</strong>
-                        <span>взрослая атмосфера и комфорт</span>
+                        <strong>Трансляции</strong>
+                        <span>спортивных событий</span>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ $featuredNews = array_slice($news ?? [], 0, 3);
             <aside class="home-hero__panel">
                 <div class="home-hero__panel-kicker">Сейчас открыто</div>
                 <div class="home-hero__panel-title">Ежедневно с 10:00 до 22:00</div>
-                <p class="home-hero__panel-text">Бронируйте стол заранее, заказывайте напитки на вынос и приходите на спокойный вечер без спешки.</p>
+                <p class="home-hero__panel-text">Бронируйте стол заранее, заказывайте напитки на вынос.</p>
 
                 <ul class="home-hero__panel-list">
                     <li><span>Телефон</span><a href="tel:+79533392119">+7 953 339 2119</a></li>
@@ -97,22 +97,22 @@ $featuredNews = array_slice($news ?? [], 0, 3);
         <div class="container">
             <div class="section-intro section-intro--wide">
                 <span class="section-kicker">Атмосфера</span>
-                <h2>Визуально спокойное, но живое место для встреч, ужинов и длинных разговоров.</h2>
-                <p>Мы собрали пространство так, чтобы оно ощущалось дорогим без показной роскоши: мягкий свет, тёплые фактуры, структурированные секции и понятная навигация по сценарию вечера.</p>
+                <h2>Создали место, в котором приятно встречаться с друзьями.</h2>
+                <p>Мы собрали пространство так, чтобы вы чувствовали себя, как дома.</p>
             </div>
 
             <div class="experience-grid">
                 <article class="experience-card">
-                    <div class="experience-card__title">Сервис</div>
-                    <p>Быстрая подача, аккуратная посадка, понятные рекомендации и внимание к деталям — как в хорошем ресторане.</p>
+                    <div class="experience-card__title">Что в меню</div>
+                    <p>Горячие закуски, бургеры, широкий выбор снеков. Голодными от нас не уходят.</p>
                 </article>
                 <article class="experience-card">
                     <div class="experience-card__title">Напитки</div>
-                    <p>Большой выбор на кранах, свежая ротация позиций и понятная витрина с сортами, стилем и крепостью.</p>
+                    <p>Большой выбор на кранах, постоянная ротация позиций. Вино и шампанское можно принести с собой.</p>
                 </article>
                 <article class="experience-card">
                     <div class="experience-card__title">Атмосфера</div>
-                    <p>Баланс камерности и статуса: место, куда удобно прийти вдвоём, с друзьями или для спокойного ужина.</p>
+                    <p>Баланс камерности и уюта: место, куда удобно прийти вдвоём или большой компанией.</p>
                 </article>
             </div>
         </div>
@@ -125,13 +125,13 @@ $featuredNews = array_slice($news ?? [], 0, 3);
             </div>
             <div class="home-story__content">
                 <span class="section-kicker">О нас</span>
-                <h2>Ресторанная подача, дружелюбный паб и аккуратная визуальная дисциплина.</h2>
-                <p>В первом зале работает магазин разливных напитков с большим выбором на кранах. Во втором — уютный ретро-паб с более камерным настроением. Мы держим фокус на свежести, качестве и ощущении «хорошо проведённого вечера».</p>
+                <h2>Дружелюбный паб в центре города.</h2>
+                <p>В первом зале работает магазин разливных напитков с большим выбором на кранах. Во втором — уютный ретро-паб с более камерным настроением. Мы держим фокус на свежести, качестве и ощущении хорошо проведённого вечера.</p>
 
                 <div class="home-story__points">
-                    <div class="home-story__point">Свежие напитки и понятная витрина</div>
-                    <div class="home-story__point">Уютная посадка и мягкий свет</div>
-                    <div class="home-story__point">Вечерний формат без суеты</div>
+                    <div class="home-story__point">Свежие напитки и правильное хранение</div>
+                    <div class="home-story__point">Уютная атмосфера и обслуживание "по-дружески"</div>
+                    <div class="home-story__point">Организация ваших мероприятий и частных вечеринок</div>
                 </div>
             </div>
         </div>
@@ -141,8 +141,8 @@ $featuredNews = array_slice($news ?? [], 0, 3);
         <div class="container">
             <div class="section-intro">
                 <span class="section-kicker">Сегодня на кранах</span>
-                <h2>Подборка актуальных сортов с чистой визуальной подачей.</h2>
-                <p>Карточки показывают ключевые параметры сразу: стиль, крепость и ориентир по цене. Это быстрее для гостя и выглядит как полноценное меню уровня хорошего заведения.</p>
+                <h2>Собираем лучшие сорта от разных пивоварен</h2>
+                <p>Сегодня у нас на кранах следующие сорта:</p>
             </div>
 
             <div class="slider-wrap home-slider-wrap">
@@ -186,8 +186,8 @@ $featuredNews = array_slice($news ?? [], 0, 3);
     <section class="home-section home-editorial">
         <div class="container">
             <div class="section-intro">
-                <span class="section-kicker">Программа вечера</span>
-                <h2>Акции, события и новости поданы как аккуратная подборка, а не как хаотичный список.</h2>
+                <span class="section-kicker">Спецпредложения</span>
+                <h2>Собрали все наши акции и события здесь.</h2>
             </div>
 
             <div class="editorial-grid">
@@ -247,8 +247,8 @@ $featuredNews = array_slice($news ?? [], 0, 3);
         <div class="container contact-grid">
             <div class="section-intro contact-intro">
                 <span class="section-kicker">Контакты</span>
-                <h2>Резерв столов, адрес и карта — в одном спокойном блоке.</h2>
-                <p>Мы сделали этот блок максимально прямым: быстрый звонок, точный адрес, график работы и карта без лишних отвлекающих элементов.</p>
+                <h2>Забронируйте стол</h2>
+                <p>Будем рады встрече с вами уже сегодня</p>
 
                 <div class="contact-list">
                     <div class="contact-row">
