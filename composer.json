@@ -1,0 +1,13 @@
+{
+    "name": "nemkoff94/pintaweb",
+    "description": "Lightweight PHP MVC-lite foundation for the Pinta pub shop website.",
+    "type": "project",
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
