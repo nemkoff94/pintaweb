@@ -5,7 +5,8 @@ declare(strict_types=1);
 <section class="relative overflow-hidden retro-hero">
     <div class="absolute inset-0 hero-glow opacity-40"></div>
     <div class="mx-auto max-w-6xl px-6 py-20">
-        <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div class="hero-card">
+            <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div class="space-y-6">
                 <h1 class="retro-title">ПИНТА - Магазин-паб в Малоярославце</h1>
                 <p class="retro-lead">Более 20 сортов розлива различного стиля на кранах, всегда свежие закуски к пиву. Бережное отношение к хранению пива и сохранению его вкусовых свойств.</p>
@@ -18,6 +19,7 @@ declare(strict_types=1);
                 <div class="retro-poster">
                     <img src="/assets/images/pinta/poster-placeholder.svg" alt="Фото пока не добавлено" class="placeholder-img"/>
                 </div>
+            </div>
             </div>
         </div>
 

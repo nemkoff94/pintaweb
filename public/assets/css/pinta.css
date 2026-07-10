@@ -30,7 +30,7 @@ body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:var(--graphite)
 .btn--glass{background:var(--glass);backdrop-filter:blur(6px);border-radius:12px;border:1px solid rgba(255,255,255,0.06);color:var(--walnut)}
 
 /* Hero */
-.hero{min-height:88vh;background-size:cover;background-position:center;display:flex;align-items:center;background-image:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('../images/pinta/hero_pinta.webp');color:#fff}
+.hero{min-height:88vh;background-size:cover;background-position:center;display:flex;align-items:center;background-image:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('../images/pinta/hero_pinta.webp');color:#fff}
 .hero-grid{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:center}
 .hero-title{font-family:'Space Grotesk',Inter;font-size:46px;line-height:1.02;margin:0 0 12px;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.6)}
 .hero-sub{color:rgba(255,255,255,0.92);max-width:64ch;text-shadow:0 1px 4px rgba(0,0,0,0.45)}
@@ -38,6 +38,8 @@ body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:var(--graphite)
 .hero-right{justify-self:end}
 .benefits{list-style:none;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.04),transparent);border-radius:14px;border:1px solid rgba(0,0,0,0.04)}
 .benefits li{padding:8px 0;color:var(--walnut);font-weight:600}
+
+.hero .hero-card{background:rgba(0,0,0,0.55);padding:28px;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,0.45)}
 
 /* Sections */
 .section{padding:72px 0}
