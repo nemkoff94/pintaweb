@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Placeholder image: Фото пока не добавлено -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#efe6db"/>
+      <stop offset="1" stop-color="#e6dacd"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g)"/>
+  <g fill="#bfa06e" opacity="0.08">
+    <rect x="40" y="40" width="200" height="120" rx="6"/>
+    <rect x="280" y="160" width="320" height="220" rx="8"/>
+  </g>
+  <text x="50%" y="48%" font-family="Inter, Arial, Helvetica, sans-serif" font-size="36" fill="#6b2a22" text-anchor="middle">Фото пока не добавлено</text>
+  <text x="50%" y="58%" font-family="Inter, Arial, Helvetica, sans-serif" font-size="18" fill="#4b392f" text-anchor="middle">Загрузите изображение в /assets/images/pinta/</text>
+</svg>

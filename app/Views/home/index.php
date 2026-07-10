@@ -16,7 +16,7 @@ declare(strict_types=1);
             </div>
             <div class="flex justify-center">
                 <div class="retro-poster">
-                    <img src="/assets/images/pint-poster.jpg" alt="Пинта - магазин-паб" onerror="this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1400&q=80'"/>
+                    <img src="/assets/images/pinta/poster-placeholder.svg" alt="Фото пока не добавлено" class="placeholder-img"/>
                 </div>
             </div>
         </div>
@@ -36,6 +36,81 @@ declare(strict_types=1);
                     <h3 class="retro-card-title">Снеки и прочее</h3>
                     <p class="retro-card-body">Закуски к вашим напиткам на любой вкус. Мясные снеки, сыр, орешки и рыба.</p>
                 </article>
+            </div>
+        </section>
+        
+        <!-- Наш интерьер -->
+        <section class="mt-14">
+            <h2 class="retro-section-title">Наш интерьер</h2>
+            <div class="mt-6 grid grid-cols-3 gap-4">
+                <img src="/assets/images/pinta/gallery-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-48 object-cover rounded-lg placeholder-img" />
+                <img src="/assets/images/pinta/gallery-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-48 object-cover rounded-lg placeholder-img" />
+                <img src="/assets/images/pinta/gallery-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-48 object-cover rounded-lg placeholder-img" />
+            </div>
+            <p class="mt-4 text-sm text-stone-700">Каждый уголок Пинты напоминает теплые вечера дома, только с отличным пивом.</p>
+        </section>
+
+        <!-- Разливное пиво (мини-карточки) -->
+        <section class="mt-14">
+            <h2 class="retro-section-title">Разливное пиво</h2>
+            <div class="mt-6 flex gap-4 overflow-x-auto py-2">
+                <?php for ($i=0;$i<5;$i++): ?>
+                <article class="retro-card" style="min-width:260px;">
+                    <div class="w-full h-40 bg-white rounded-md overflow-hidden mb-3 flex items-center justify-center">
+                        <img src="/assets/images/pinta/hero-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-full object-cover placeholder-img" />
+                    </div>
+                    <h3 class="retro-card-title">Сорт пива <?= $i+1 ?></h3>
+                    <p class="retro-card-body">Стиль · 5.2% · IBU 30</p>
+                </article>
+                <?php endfor; ?>
+            </div>
+        </section>
+
+        <!-- Бутылочное пиво -->
+        <section class="mt-14">
+            <h2 class="retro-section-title">Бутылочное пиво</h2>
+            <div class="mt-6 grid grid-cols-4 gap-4">
+                <?php for ($i=0;$i<8;$i++): ?>
+                <div class="retro-card">
+                    <div class="flex items-center justify-center mb-3">
+                        <img src="/assets/images/pinta/bottle-placeholder.svg" alt="Фото пока не добавлено" class="w-32 h-auto placeholder-img" />
+                    </div>
+                    <h4 class="retro-card-title">Бутылка <?= $i+1 ?></h4>
+                    <p class="retro-card-body">Краткое описание вкуса.</p>
+                </div>
+                <?php endfor; ?>
+            </div>
+        </section>
+
+        <!-- Настольные игры -->
+        <section class="mt-14">
+            <h2 class="retro-section-title">Настольные игры</h2>
+            <div class="mt-6 grid grid-cols-3 gap-4">
+                <?php $games = ['Alias','Uno','Дженга','Монополия','Имаджинариум','Каркассон']; ?>
+                <?php foreach($games as $g): ?>
+                <div class="retro-card">
+                    <img src="/assets/images/pinta/game-placeholder.svg" alt="Фото пока не добавлено" class="w-full h-32 object-cover rounded-md mb-3 placeholder-img" />
+                    <h4 class="retro-card-title"><?= htmlspecialchars($g, ENT_QUOTES, 'UTF-8') ?></h4>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section class="mt-14 mb-20">
+            <h2 class="retro-section-title">Отзывы</h2>
+            <div class="mt-6 grid grid-cols-3 gap-6">
+                <?php for ($i=0;$i<3;$i++): ?>
+                <div class="retro-card">
+                    <div class="flex items-center gap-4">
+                        <img src="/assets/images/pinta/avatar-placeholder.svg" alt="Фото пока не добавлено" class="w-16 h-16 rounded-full placeholder-img" />
+                        <div>
+                            <strong>Гость <?= $i+1 ?></strong>
+                            <div class="text-sm text-stone-700">«Отличная атмосфера, любимое место для просмотра матчей.»</div>
+                        </div>
+                    </div>
+                </div>
+                <?php endfor; ?>
             </div>
         </section>
     </div>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Game placeholder -->
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="320" viewBox="0 0 500 320">
+  <rect width="100%" height="100%" fill="#efe6db"/>
+  <rect x="24" y="24" width="452" height="272" rx="12" fill="#fffaf2" stroke="#e3d6c9"/>
+  <text x="50%" y="50%" font-family="Inter, Arial" font-size="20" fill="#6b2a22" text-anchor="middle">Фото пока не добавлено</text>
+  <text x="50%" y="62%" font-family="Inter, Arial" font-size="12" fill="#4b392f" text-anchor="middle">настольные игры</text>
+</svg>

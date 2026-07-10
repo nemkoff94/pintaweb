@@ -1,0 +1,81 @@
+:root{
+  --wood-900:#1b130d;
+  --walnut:#5a3921;
+  --amber:#c77a00;
+  --copper:#b06b3b;
+  --warm-beige:#f6efe7;
+  --cream:#fff6ea;
+  --graphite:#2d2d2f;
+  --deep-green:#0f3b2d;
+  --bottle-green:#175134;
+  --brass:#bfa06e;
+  --muted-burgundy:#7b2f2f;
+  --beer-fresh:#f2c94c;
+  --glass: rgba(255,255,255,0.06);
+}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:var(--graphite);background:linear-gradient(180deg,var(--warm-beige),#efe6df);-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.site-header{backdrop-filter:blur(6px);background:transparent;position:sticky;top:0;z-index:60;padding:18px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'Space Grotesk',Inter,system-ui;font-weight:800;font-size:22px;color:var(--walnut);text-decoration:none}
+.nav a{margin-left:18px;color:var(--graphite);text-decoration:none}
+
+/* Buttons */
+.btn{display:inline-block;padding:10px 16px;border-radius:12px;font-weight:700;text-decoration:none}
+.btn--primary{background:linear-gradient(90deg,var(--amber),var(--beer-fresh));color:#111;box-shadow:0 8px 30px rgba(183,115,20,0.16);}
+.btn--ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--walnut)}
+.btn--glass{background:var(--glass);backdrop-filter:blur(6px);border-radius:12px;border:1px solid rgba(255,255,255,0.06);color:var(--walnut)}
+
+/* Hero */
+.hero{min-height:88vh;background-size:cover;background-position:center;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:center}
+.hero-title{font-family:'Space Grotesk',Inter;font-size:46px;line-height:1.02;margin:0 0 12px;color:var(--wood-900)}
+.hero-sub{color:#4b3f39;max-width:64ch}
+.hero-cta{margin-top:18px}
+.hero-right{justify-self:end}
+.benefits{list-style:none;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.04),transparent);border-radius:14px;border:1px solid rgba(0,0,0,0.04)}
+.benefits li{padding:8px 0;color:var(--walnut);font-weight:600}
+
+/* Sections */
+.section{padding:72px 0}
+.section-title{font-family:'Space Grotesk',Inter;font-size:26px;color:var(--walnut);margin:0 0 18px}
+.muted{color:#6b5a54}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:linear-gradient(180deg,var(--cream),#fffaf2);padding:16px;border-radius:12px;border:1px solid #e6dcca;box-shadow:0 8px 24px rgba(33,17,11,0.06)}
+.card h3{margin:8px 0 6px;font-size:18px;color:var(--muted-burgundy)}
+.card p{margin:0;color:#4b3f39}
+.icon{font-size:28px}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery img{width:100%;height:220px;object-fit:cover;border-radius:10px}
+
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+.slider{display:flex;gap:12px}
+.slider-item{min-width:260px}
+.slider .card img{height:160px}
+
+.avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:8px}
+
+.cta-dark{background:var(--wood-900);color:var(--cream);padding:48px 0}
+.cta-title{font-family:'Space Grotesk',Inter;font-size:28px;margin:0 0 12px}
+.cta-actions .btn{margin-right:12px}
+
+.site-footer{padding:28px 0;background:transparent}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+
+/* Placeholder img helper */
+.placeholder-img{display:block;width:100%;height:100%;object-fit:cover;border-radius:10px;background:#efe6db}
+.placeholder-img.bottle{height:220px;width:auto}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .6s cubic-bezier(.2,.9,.3,1)}
+.in-view{opacity:1;transform:none}
+
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.hero-title{font-size:28px}.header-inner{padding:0 6px}.nav{display:none}}
