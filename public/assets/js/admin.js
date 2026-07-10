@@ -1,4 +1,27 @@
 (() => {
+    document.querySelectorAll('[data-form-toggle]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-form-toggle');
+            if (!targetId) {
+                return;
+            }
+
+            const formCard = document.getElementById(targetId);
+            if (!formCard) {
+                return;
+            }
+
+            const isHidden = formCard.hasAttribute('hidden');
+
+            if (isHidden) {
+                formCard.removeAttribute('hidden');
+                formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                formCard.setAttribute('hidden', 'hidden');
+            }
+        });
+    });
+
     const datePicker = document.querySelector('[data-event-datepicker]');
 
     if (datePicker && typeof window.flatpickr === 'function') {

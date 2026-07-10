@@ -109,71 +109,12 @@ $shorten = static function (string $text, int $limit = 120): string {
 
         <?php if ($section === 'taps'): ?>
             <section class="admin-card" style="margin-bottom: 16px;">
-                <div class="admin-card-header">
-                    <h2 class="admin-card-title">Добавить новый сорт</h2>
-                </div>
-                <div class="admin-card-body">
-                    <form action="/admin/taps/create" method="post" enctype="multipart/form-data" class="admin-grid">
-                        <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
-
-                        <div class="admin-grid two">
-                            <label class="admin-field">
-                                <span class="admin-label">Название</span>
-                                <input class="admin-input" type="text" name="name" required>
-                            </label>
-                            <label class="admin-field">
-                                <span class="admin-label">Стиль</span>
-                                <input class="admin-input" type="text" name="style" required>
-                            </label>
-                        </div>
-
-                        <div class="admin-grid two">
-                            <label class="admin-field">
-                                <span class="admin-label">Процент алкоголя</span>
-                                <input class="admin-input" type="text" name="abv" placeholder="5.4" required>
-                            </label>
-                            <label class="admin-field">
-                                <span class="admin-label">Стоимость за литр в магазине</span>
-                                <input class="admin-input" type="text" name="price_store_liter" placeholder="420" required>
-                            </label>
-                        </div>
-
-                        <div class="admin-grid two">
-                            <label class="admin-field">
-                                <span class="admin-label">Стоимость за бокал в баре (0,5)</span>
-                                <input class="admin-input" type="text" name="price_bar_half" placeholder="230" required>
-                            </label>
-                            <label class="admin-field">
-                                <span class="admin-label">Загрузить фото</span>
-                                <input class="admin-input" type="file" name="tap_image" accept="image/*">
-                            </label>
-                        </div>
-
-                        <label class="admin-field">
-                            <span class="admin-label">Или выбрать из загруженных</span>
-                            <select class="admin-select" name="existing_image">
-                                <option value="">Не выбрано</option>
-                                <?php foreach ($mediaAssets as $asset): ?>
-                                    <option value="<?= htmlspecialchars((string) $asset['relative_path'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        <?= htmlspecialchars((string) $asset['original_name'], ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-
-                        <div>
-                            <button type="submit" class="admin-btn primary">
-                                <i class="fa-solid fa-plus"></i>
-                                Добавить сорт
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-            <section class="admin-card">
-                <div class="admin-card-header">
+                <div class="admin-card-header admin-card-header-row">
                     <h2 class="admin-card-title">Список сортов на кранах</h2>
+                    <button type="button" class="admin-btn primary" data-form-toggle="tap-create-form">
+                        <i class="fa-solid fa-plus"></i>
+                        Добавить сорт
+                    </button>
                 </div>
                 <div class="admin-card-body admin-table-wrap">
                     <table class="admin-table">
@@ -276,66 +217,79 @@ $shorten = static function (string $text, int $limit = 120): string {
                     </table>
                 </div>
             </section>
-        <?php endif; ?>
 
-        <?php if ($section === 'events'): ?>
-            <section class="admin-card" style="margin-bottom: 16px;">
+            <section id="tap-create-form" class="admin-card admin-collapsible" style="margin-bottom: 16px;" hidden>
                 <div class="admin-card-header">
-                    <h2 class="admin-card-title">Добавить новое событие</h2>
+                    <h2 class="admin-card-title">Добавить новый сорт</h2>
                 </div>
                 <div class="admin-card-body">
-                    <form action="/admin/events/create" method="post" enctype="multipart/form-data" class="admin-grid">
+                    <form action="/admin/taps/create" method="post" enctype="multipart/form-data" class="admin-grid">
                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
-
-                        <label class="admin-field">
-                            <span class="admin-label">Название</span>
-                            <input class="admin-input" type="text" name="title" required>
-                        </label>
-
-                        <label class="admin-field">
-                            <span class="admin-label">Анонс</span>
-                            <textarea class="admin-textarea" name="announce" required></textarea>
-                        </label>
-
-                        <label class="admin-field">
-                            <span class="admin-label">Описание</span>
-                            <textarea class="admin-textarea js-richtext admin-editor" name="description" required></textarea>
-                        </label>
 
                         <div class="admin-grid two">
                             <label class="admin-field">
-                                <span class="admin-label">Обложка (загрузить)</span>
-                                <input class="admin-input" type="file" name="event_cover" accept="image/*">
+                                <span class="admin-label">Название</span>
+                                <input class="admin-input" type="text" name="name" required>
                             </label>
                             <label class="admin-field">
-                                <span class="admin-label">Дата и время</span>
-                                <input class="admin-input" data-event-datepicker type="text" name="event_at" placeholder="2026-07-10 20:00" required>
+                                <span class="admin-label">Стиль</span>
+                                <input class="admin-input" type="text" name="style" required>
+                            </label>
+                        </div>
+
+                        <div class="admin-grid two">
+                            <label class="admin-field">
+                                <span class="admin-label">Процент алкоголя</span>
+                                <input class="admin-input" type="text" name="abv" placeholder="5.4" required>
+                            </label>
+                            <label class="admin-field">
+                                <span class="admin-label">Стоимость за литр в магазине</span>
+                                <input class="admin-input" type="text" name="price_store_liter" placeholder="420" required>
+                            </label>
+                        </div>
+
+                        <div class="admin-grid two">
+                            <label class="admin-field">
+                                <span class="admin-label">Стоимость за бокал в баре (0,5)</span>
+                                <input class="admin-input" type="text" name="price_bar_half" placeholder="230" required>
+                            </label>
+                            <label class="admin-field">
+                                <span class="admin-label">Загрузить фото</span>
+                                <input class="admin-input" type="file" name="tap_image" accept="image/*">
                             </label>
                         </div>
 
                         <label class="admin-field">
-                            <span class="admin-label">Или выбрать обложку из загруженных</span>
+                            <span class="admin-label">Или выбрать из загруженных</span>
                             <select class="admin-select" name="existing_image">
                                 <option value="">Не выбрано</option>
                                 <?php foreach ($mediaAssets as $asset): ?>
-                                    <option value="<?= htmlspecialchars((string) $asset['relative_path'], ENT_QUOTES, 'UTF-8'); ?>"><?= htmlspecialchars((string) $asset['original_name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                                    <option value="<?= htmlspecialchars((string) $asset['relative_path'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        <?= htmlspecialchars((string) $asset['original_name'], ENT_QUOTES, 'UTF-8'); ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </label>
 
                         <div>
-                            <button class="admin-btn primary" type="submit">
-                                <i class="fa-solid fa-calendar-plus"></i>
-                                Добавить событие
+                            <button type="submit" class="admin-btn primary">
+                                <i class="fa-solid fa-plus"></i>
+                                Добавить сорт
                             </button>
                         </div>
                     </form>
                 </div>
             </section>
+        <?php endif; ?>
 
-            <section class="admin-card">
-                <div class="admin-card-header">
+        <?php if ($section === 'events'): ?>
+            <section class="admin-card" style="margin-bottom: 16px;">
+                <div class="admin-card-header admin-card-header-row">
                     <h2 class="admin-card-title">Текущие события</h2>
+                    <button type="button" class="admin-btn primary" data-form-toggle="event-create-form">
+                        <i class="fa-solid fa-plus"></i>
+                        Добавить событие
+                    </button>
                 </div>
                 <div class="admin-card-body admin-table-wrap">
                     <table class="admin-table">
@@ -415,15 +369,13 @@ $shorten = static function (string $text, int $limit = 120): string {
                     </table>
                 </div>
             </section>
-        <?php endif; ?>
 
-        <?php if ($section === 'promotions'): ?>
-            <section class="admin-card" style="margin-bottom: 16px;">
+            <section id="event-create-form" class="admin-card admin-collapsible" style="margin-bottom: 16px;" hidden>
                 <div class="admin-card-header">
-                    <h2 class="admin-card-title">Добавить новую акцию</h2>
+                    <h2 class="admin-card-title">Добавить новое событие</h2>
                 </div>
                 <div class="admin-card-body">
-                    <form action="/admin/promotions/create" method="post" enctype="multipart/form-data" class="admin-grid">
+                    <form action="/admin/events/create" method="post" enctype="multipart/form-data" class="admin-grid">
                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
 
                         <label class="admin-field">
@@ -438,38 +390,49 @@ $shorten = static function (string $text, int $limit = 120): string {
 
                         <label class="admin-field">
                             <span class="admin-label">Описание</span>
-                            <textarea class="admin-textarea js-richtext" name="description" required></textarea>
+                            <textarea class="admin-textarea js-richtext admin-editor" name="description" required></textarea>
                         </label>
 
                         <div class="admin-grid two">
                             <label class="admin-field">
                                 <span class="admin-label">Обложка (загрузить)</span>
-                                <input class="admin-input" type="file" name="promotion_cover" accept="image/*">
+                                <input class="admin-input" type="file" name="event_cover" accept="image/*">
                             </label>
                             <label class="admin-field">
-                                <span class="admin-label">Или выбрать из загруженных</span>
-                                <select class="admin-select" name="existing_image">
-                                    <option value="">Не выбрано</option>
-                                    <?php foreach ($mediaAssets as $asset): ?>
-                                        <option value="<?= htmlspecialchars((string) $asset['relative_path'], ENT_QUOTES, 'UTF-8'); ?>"><?= htmlspecialchars((string) $asset['original_name'], ENT_QUOTES, 'UTF-8'); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <span class="admin-label">Дата и время</span>
+                                <input class="admin-input" data-event-datepicker type="text" name="event_at" placeholder="2026-07-10 20:00" required>
                             </label>
                         </div>
 
+                        <label class="admin-field">
+                            <span class="admin-label">Или выбрать обложку из загруженных</span>
+                            <select class="admin-select" name="existing_image">
+                                <option value="">Не выбрано</option>
+                                <?php foreach ($mediaAssets as $asset): ?>
+                                    <option value="<?= htmlspecialchars((string) $asset['relative_path'], ENT_QUOTES, 'UTF-8'); ?>"><?= htmlspecialchars((string) $asset['original_name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
+
                         <div>
                             <button class="admin-btn primary" type="submit">
-                                <i class="fa-solid fa-tags"></i>
-                                Добавить акцию
+                                <i class="fa-solid fa-calendar-plus"></i>
+                                Добавить событие
                             </button>
                         </div>
                     </form>
                 </div>
             </section>
+        <?php endif; ?>
 
-            <section class="admin-card">
-                <div class="admin-card-header">
+        <?php if ($section === 'promotions'): ?>
+            <section class="admin-card" style="margin-bottom: 16px;">
+                <div class="admin-card-header admin-card-header-row">
                     <h2 class="admin-card-title">Текущие акции</h2>
+                    <button type="button" class="admin-btn primary" data-form-toggle="promotion-create-form">
+                        <i class="fa-solid fa-plus"></i>
+                        Добавить акцию
+                    </button>
                 </div>
                 <div class="admin-card-body admin-table-wrap">
                     <table class="admin-table">
@@ -545,15 +508,13 @@ $shorten = static function (string $text, int $limit = 120): string {
                     </table>
                 </div>
             </section>
-        <?php endif; ?>
 
-        <?php if ($section === 'news'): ?>
-            <section class="admin-card" style="margin-bottom: 16px;">
+            <section id="promotion-create-form" class="admin-card admin-collapsible" style="margin-bottom: 16px;" hidden>
                 <div class="admin-card-header">
-                    <h2 class="admin-card-title">Добавить новость</h2>
+                    <h2 class="admin-card-title">Добавить новую акцию</h2>
                 </div>
                 <div class="admin-card-body">
-                    <form action="/admin/news/create" method="post" enctype="multipart/form-data" class="admin-grid">
+                    <form action="/admin/promotions/create" method="post" enctype="multipart/form-data" class="admin-grid">
                         <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
 
                         <label class="admin-field">
@@ -562,14 +523,19 @@ $shorten = static function (string $text, int $limit = 120): string {
                         </label>
 
                         <label class="admin-field">
-                            <span class="admin-label">Текст новости</span>
-                            <textarea class="admin-textarea js-richtext" name="content" required></textarea>
+                            <span class="admin-label">Анонс</span>
+                            <textarea class="admin-textarea" name="announce" required></textarea>
+                        </label>
+
+                        <label class="admin-field">
+                            <span class="admin-label">Описание</span>
+                            <textarea class="admin-textarea js-richtext" name="description" required></textarea>
                         </label>
 
                         <div class="admin-grid two">
                             <label class="admin-field">
                                 <span class="admin-label">Обложка (загрузить)</span>
-                                <input class="admin-input" type="file" name="news_cover" accept="image/*">
+                                <input class="admin-input" type="file" name="promotion_cover" accept="image/*">
                             </label>
                             <label class="admin-field">
                                 <span class="admin-label">Или выбрать из загруженных</span>
@@ -584,17 +550,23 @@ $shorten = static function (string $text, int $limit = 120): string {
 
                         <div>
                             <button class="admin-btn primary" type="submit">
-                                <i class="fa-solid fa-plus"></i>
-                                Добавить новость
+                                <i class="fa-solid fa-tags"></i>
+                                Добавить акцию
                             </button>
                         </div>
                     </form>
                 </div>
             </section>
+        <?php endif; ?>
 
-            <section class="admin-card">
-                <div class="admin-card-header">
+        <?php if ($section === 'news'): ?>
+            <section class="admin-card" style="margin-bottom: 16px;">
+                <div class="admin-card-header admin-card-header-row">
                     <h2 class="admin-card-title">Список новостей</h2>
+                    <button type="button" class="admin-btn primary" data-form-toggle="news-create-form">
+                        <i class="fa-solid fa-plus"></i>
+                        Добавить новость
+                    </button>
                 </div>
                 <div class="admin-card-body admin-table-wrap">
                     <table class="admin-table">
@@ -668,6 +640,50 @@ $shorten = static function (string $text, int $limit = 120): string {
                         <?php endif; ?>
                         </tbody>
                     </table>
+                </div>
+            </section>
+
+            <section id="news-create-form" class="admin-card admin-collapsible" style="margin-bottom: 16px;" hidden>
+                <div class="admin-card-header">
+                    <h2 class="admin-card-title">Добавить новость</h2>
+                </div>
+                <div class="admin-card-body">
+                    <form action="/admin/news/create" method="post" enctype="multipart/form-data" class="admin-grid">
+                        <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken, ENT_QUOTES, 'UTF-8'); ?>">
+
+                        <label class="admin-field">
+                            <span class="admin-label">Название</span>
+                            <input class="admin-input" type="text" name="title" required>
+                        </label>
+
+                        <label class="admin-field">
+                            <span class="admin-label">Текст новости</span>
+                            <textarea class="admin-textarea js-richtext" name="content" required></textarea>
+                        </label>
+
+                        <div class="admin-grid two">
+                            <label class="admin-field">
+                                <span class="admin-label">Обложка (загрузить)</span>
+                                <input class="admin-input" type="file" name="news_cover" accept="image/*">
+                            </label>
+                            <label class="admin-field">
+                                <span class="admin-label">Или выбрать из загруженных</span>
+                                <select class="admin-select" name="existing_image">
+                                    <option value="">Не выбрано</option>
+                                    <?php foreach ($mediaAssets as $asset): ?>
+                                        <option value="<?= htmlspecialchars((string) $asset['relative_path'], ENT_QUOTES, 'UTF-8'); ?>"><?= htmlspecialchars((string) $asset['original_name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div>
+                            <button class="admin-btn primary" type="submit">
+                                <i class="fa-solid fa-plus"></i>
+                                Добавить новость
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </section>
         <?php endif; ?>

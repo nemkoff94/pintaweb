@@ -172,6 +172,14 @@ body.admin-shell {
     padding: 20px 22px 0;
 }
 
+.admin-card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
 .admin-card-title {
     margin: 0;
     font-size: 20px;
@@ -364,6 +372,10 @@ body.admin-shell {
 }
 
 .mobile-nav {
+    display: none;
+}
+
+.admin-collapsible[hidden] {
     display: none;
 }
 
