@@ -118,7 +118,7 @@ $featuredNews = array_slice($news ?? [], 0, 3);
         </div>
     </section>
 
-    <section class="home-section home-story">
+    <section class="home-section home-story" id="about">
         <div class="container home-story__grid">
             <div class="home-story__media">
                 <img src="/assets/images/pinta/bar_vert.webp" alt="Интерьер Пинты" />
@@ -183,7 +183,7 @@ $featuredNews = array_slice($news ?? [], 0, 3);
         </div>
     </section>
 
-    <section class="home-section home-editorial">
+    <section class="home-section home-editorial" id="promotions">
         <div class="container">
             <div class="section-intro">
                 <span class="section-kicker">Спецпредложения</span>
@@ -207,7 +207,7 @@ $featuredNews = array_slice($news ?? [], 0, 3);
                     <?php endif; ?>
                 </article>
 
-                <article class="content-card">
+                <article class="content-card" id="events">
                     <div class="content-card__head">
                         <span class="content-card__label">События</span>
                     </div>
